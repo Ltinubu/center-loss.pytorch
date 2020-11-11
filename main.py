@@ -71,14 +71,14 @@ def train(args):
 
     training_dataloader = torch.utils.data.DataLoader(
         training_dataset,
-        batch_size=args.batch_size,
+        batch_size=4,
         num_workers=6,
         shuffle=True
     )
 
     validation_dataloader = torch.utils.data.DataLoader(
         validation_dataset,
-        batch_size=args.batch_size,
+        batch_size=4,
         num_workers=6,
         shuffle=False
     )
@@ -120,7 +120,7 @@ def evaluate(args):
 
     dataset = LFWPairedDataset(
         dataset_dir, pairs_path, transform_for_infer(model_class.IMAGE_SHAPE))
-    dataloader = DataLoader(dataset, batch_size=args.batch_size, num_workers=4)
+    dataloader = DataLoader(dataset, batch_size=4, num_workers=4)
     model = model_class(False).to(device)
 
     checkpoint = torch.load(args.evaluate)
